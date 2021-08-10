@@ -1,22 +1,21 @@
-pragma solidity 0.6.1;
+pragma solidity >=0.4.22 <0.7.0;
 
-contract HeadTail {
-    uint public counter;
+contract StreamingServiceSubscriptions {
+	uint256 cost;
 
-    constructor() public {
-        counter = 1;
+    constructor(uint256 _cost) public {//set cost per month of subscription
+        cost = _cost;
     }
 
-    function setCounter(uint _counter) public {
-        counter = _counter;
+    function makePayment() payable public {//user can add funds to their balance
+    
     }
 
-    function counterMultiplied(uint _multiplier) public view
-    returns (uint _counterMultiplied) {
-        _counterMultiplied = counter * _multiplier;
+    function withdrawBalance() public {//company can remove funds to their own account
+        msg.sender.transfer(address(this).balance);
     }
 
-    function counterMultipliedSquare(uint _multiplier) public view returns (uint) {
-        return counterMultiplied(_multiplier) * _multiplier;
+    function isBalanceCurrent(uint256 monthsElapsed) public view returns (bool) {//company can check if the user has paid enough money in
+        return cost * monthsElapsed == address(this).balance;
     }
 }
