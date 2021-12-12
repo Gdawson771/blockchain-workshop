@@ -1,58 +1,86 @@
-# Blockchain workshop
+# Supervise Learning
 
-Install:
-```
-yarn
-```
+## Linear Regression
 
-Build:
+### Hypothesis
 
-```
-yarn build
+### Cost Fucntion
+$J(\theta_0,\theta_1)=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y}_i-y_i)^2=\frac{1}{2m}\sum_{i=1}^{m}(h_\theta(x_i)-y_i)^2$
 
-// Contracts only
-yarn compile
 
-// TypeScript only
-yarn build:ts
-```
+## Linear Regression with multiple variables
 
-Start `src/HeadTail.ts`:
-```
-yarn start
-```
+### Hypothesis
 
-Test:
-```
-yarn test
-```
+### Cost Fucntion
+$J(\theta_0,\theta_1)=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y}_i-y_i)^2=\frac{1}{2m}\sum_{i=1}^{m}(h_\theta(x_i)-y_i)^2$
 
-Make sure to start local blockchain first:
+### Gradient Descent
 
-```
-yarn start:ganache
-```
+$repeat \hspace*{1mm} until \hspace*{1mm} convergence: \{\\
+\hspace*{20mm} \theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)}).x_j^{(i)} \hspace*{8mm} for \hspace*{1mm} j:=0..n
+\\\hspace*{6mm}\}$
 
-## Overview
 
-![Diagram](diagram.png?raw=true "Architecture")
+## Logistic Regression
 
-## Stages
+### Hypothesis
 
-| Stage | Status | Description |
-| --- | --- | --- |
-| [master](https://github.com/Kuzirashi/blockchain-workshop/tree/master) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=master) | Starting point |
-| [stage-1](https://github.com/Kuzirashi/blockchain-workshop/tree/stage-1) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=stage-1) | Create a function that saves user one address and accepts deposit |
-| [stage-2](https://github.com/Kuzirashi/blockchain-workshop/tree/stage-2) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=stage-2) | Allow two users to deposit 1 ETH and save their address |
-| [stage-3](https://github.com/Kuzirashi/blockchain-workshop/tree/stage-3) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=stage-3) | Add ability to save boolean along with the address |
-| [stage-3.1](https://github.com/Kuzirashi/blockchain-workshop/tree/stage-3.1) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=stage-3.1) | Move user one deposit function to constructor |
-| [stage-4](https://github.com/Kuzirashi/blockchain-workshop/tree/stage-4) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=stage-4) | Add prize distribution function, sends ETH after a correct guess |
-| [stage-5](https://github.com/Kuzirashi/blockchain-workshop/tree/stage-5) | ![](https://api.travis-ci.com/Kuzirashi/blockchain-workshop.svg?branch=stage-5) | Encrypt user one choice with secret |
+$h_\theta(x)=g(\theta^Tx)$
 
-## Slides
 
-- Polish version: https://drive.google.com/open?id=1nGIvaI70fv-zqX3EsXHxZfhqX9QGQdylCdpFZsvwPnM
+### Cost Function
 
-## Credits
+$J(\theta)=-\frac{1}{m}\sum_{i=1}^{m}(y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))$
 
-Authored by [Daniel Kmak](https://www.linkedin.com/in/kmakdaniel/).
+
+### Gradient Descent
+
+$repeat \hspace*{1mm} untill \hspace*{1mm} convergence: \{\\
+\hspace*{20mm} \theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)}).x_j^{(i)} \hspace*{8mm} for \hspace*{1mm} j:=0..n
+\\\hspace*{6mm}\}$
+
+
+## Logistic Regression with multiple variables
+
+### Hypothesis
+
+$h_\theta(x)=g(\theta^Tx)$
+
+
+### Cost Fucntion
+
+$J(\theta)=-\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)})]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$
+
+
+### Gradient Descent
+
+$Repeat: \{
+\\
+\hspace*{20mm}\theta_0:=\theta_0-\alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x_0^{(i)}
+\\
+\hspace*{20mm} \theta_j:=\theta_j-\alpha[(\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)})+\frac{\lambda}{m}\theta_j]\hspace*{8mm}j\epsilon{1,2,\dots n})
+\\
+\hspace*{6mm}\}$
+
+## Neural Networks
+
+### Hypothesis
+
+$h_\theta(x)=g(\theta^Tx)$
+
+
+### Cost Fucntion
+
+$J(\Theta)=-\frac{1}{m}\sum_{i=1}^{m}\sum_{k=1}^{k}[y^{(k)}log((h_\Theta(x^{(i)}))_k)+(1-y^{(i)}_k)log(1-(h_\Theta(x^{(i)})_k)]+\frac{\lambda}{2m}\sum_{l=1}^{L-1}\sum_{i=1}^{s_l}\sum_{j=1}^{s_{l+1}}(\theta_{j,i}^{(l)})^2$
+
+
+### Gradient Descent
+
+$ Repeat:\{
+\\
+\hspace*{20mm}\theta_0:=\theta_0-\alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x_0^{(i)}
+\\
+\hspace*{20mm} \theta_j:=\theta_j-\alpha[(\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)})+\frac{\lambda}{m}\theta_j]\hspace*{8mm}j\epsilon{1,2,\dots n})
+\\
+\hspace*{6mm}$
